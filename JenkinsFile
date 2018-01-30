@@ -1,0 +1,30 @@
+pipeline {
+	agent any 
+		stages {
+			stage('build')	{
+				steps {
+					withMaven(maven: 'Maven_Home'){
+						sh 'mvn clean compile'
+					}			
+				}
+			}
+			
+			stage('test') {
+				steps {
+					withMaven(maven: 'Maven_Home'){
+						sh 'mvn test'
+					}			
+				}
+			
+			}
+			
+			stage('deploy') {
+				steps {
+					withMaven(maven: 'Maven_Home'){
+						sh 'mvn deploy'
+					}			
+				}
+			
+			}
+		}
+    }
